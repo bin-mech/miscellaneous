@@ -1,0 +1,20 @@
+Tuning a high-DPI Linux system requires two steps:
+1. Setting the MATLAB scale factor
+2. Calibrating the system's DPI
+The MATLAB scale factor affects MATLAB desktop and the size/position of windows.
+The system DPI determines the scale and font size of axes and labels.
+The two tuning steps are described below:
+1. To set the MATLAB scale factor, please execute the following commands in the MATLAB Command Window:
+```
+>> s = settings;s.matlab.desktop.DisplayScaleFactor
+>> s.matlab.desktop.DisplayScaleFactor.PersonalValue = 1.5
+```
+Here the scale factor has been set to 1.5.
+2. To calibrate the system's DPI to match the scale factor, please use the following terminal commands:
+```
+% xdpyinfo | grep resolution
+  resolution:    96x96 dots per inch
+% xrandr --dpi 144
+```
+The DPI value chosen should be the resolution found with "xdpyinfo" multiplied by the MATLAB scale factor that was set. In the example, 96 × 1.5 = 144.
+MATLAB must be restarted after Step 2.
